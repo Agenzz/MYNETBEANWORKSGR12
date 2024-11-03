@@ -20,8 +20,14 @@ volume = length * width * height;
             System.out.println("height: " + height);
                 System.out.println("Volume: " + volume);
                     System.out.println("Surface Area: " + surfaceArea);
+                        System.out.println(" ");
+             
                     
-                    
+// from subclass
+        Naraja_JavaBasics_ICT1201 callClass = new Naraja_JavaBasics_ICT1201();
+        
+        callClass.introduction("Justine", "Sleeping", 18);
+            callClass.introduction("Naraja", "Eating", 88);
     }
     
 }
