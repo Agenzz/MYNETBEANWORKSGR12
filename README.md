@@ -1,1 +1,1 @@
-Yes
+Ww up to 2.5
