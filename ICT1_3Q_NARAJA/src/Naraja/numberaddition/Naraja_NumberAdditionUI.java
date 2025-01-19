@@ -5,6 +5,10 @@
  */
 package Naraja.numberaddition;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author user
@@ -16,7 +20,26 @@ public class Naraja_NumberAdditionUI extends javax.swing.JFrame {
      */
     public Naraja_NumberAdditionUI() {
         initComponents();
-    }
+        
+        //Makes ResultField uneditable
+        ResultField.setEditable(false);
+        
+    // Restrict FirstNumberField to only allow numbers
+    FirstNumberField.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+            char inputChar = evt.getKeyChar();
+            if (!Character.isDigit(inputChar) && inputChar != '\b') { // Allows only numbers and delete(backspace) inputs
+                evt.consume(); // Ignores characters that aren't numbers
+            } } } );
+
+    // Similar to FirstNumberField but for SecondNumberField
+    SecondNumberField.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+            char inputChar = evt.getKeyChar();
+            if (!Character.isDigit(inputChar) && inputChar != '\b') { // Allows only numbers and delete(backspace) inputs
+                evt.consume(); // Ignores characters that aren't numbers
+            } } } );
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,27 +53,36 @@ public class Naraja_NumberAdditionUI extends javax.swing.JFrame {
         NumberAddition = new javax.swing.JPanel();
         FirstNumber = new javax.swing.JLabel();
         SecondNumber = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        Result = new javax.swing.JLabel();
         FirstNumberField = new javax.swing.JTextField();
         ResultField = new javax.swing.JTextField();
         SecondNumberField = new javax.swing.JTextField();
-        Clear = new javax.swing.JButton();
-        Add = new javax.swing.JButton();
-        Exit = new javax.swing.JButton();
-        Subtract = new javax.swing.JButton();
-        Multiply = new javax.swing.JButton();
-        Divide = new javax.swing.JButton();
+        JbtnClear = new javax.swing.JButton();
+        JbtnAdd = new javax.swing.JButton();
+        JbtnExit = new javax.swing.JButton();
+        JbtnSubtract = new javax.swing.JButton();
+        JbtnMultiply = new javax.swing.JButton();
+        JbtnDivide = new javax.swing.JButton();
+        Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        NumberAddition.setBackground(new java.awt.Color(204, 0, 255));
-        NumberAddition.setBorder(javax.swing.BorderFactory.createTitledBorder("Number Addition"));
+        NumberAddition.setBackground(new java.awt.Color(255, 153, 255));
+        NumberAddition.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Number Addition", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
+        NumberAddition.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        FirstNumber.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         FirstNumber.setText("First Number:");
+        NumberAddition.add(FirstNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, 50));
 
+        SecondNumber.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         SecondNumber.setText("Second Number:");
+        NumberAddition.add(SecondNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, 50));
 
-        jLabel4.setText("Result:");
+        Result.setBackground(new java.awt.Color(255, 153, 153));
+        Result.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        Result.setText("Result:");
+        NumberAddition.add(Result, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, -1, 50));
 
         FirstNumberField.setBackground(new java.awt.Color(51, 204, 255));
         FirstNumberField.addActionListener(new java.awt.event.ActionListener() {
@@ -58,6 +90,12 @@ public class Naraja_NumberAdditionUI extends javax.swing.JFrame {
                 FirstNumberFieldActionPerformed(evt);
             }
         });
+        FirstNumberField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                FirstNumberFieldKeyTyped(evt);
+            }
+        });
+        NumberAddition.add(FirstNumberField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 320, 50));
 
         ResultField.setEditable(false);
         ResultField.setBackground(new java.awt.Color(51, 204, 255));
@@ -66,6 +104,7 @@ public class Naraja_NumberAdditionUI extends javax.swing.JFrame {
                 ResultFieldActionPerformed(evt);
             }
         });
+        NumberAddition.add(ResultField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 320, 50));
 
         SecondNumberField.setBackground(new java.awt.Color(51, 204, 255));
         SecondNumberField.addActionListener(new java.awt.event.ActionListener() {
@@ -73,121 +112,81 @@ public class Naraja_NumberAdditionUI extends javax.swing.JFrame {
                 SecondNumberFieldActionPerformed(evt);
             }
         });
+        NumberAddition.add(SecondNumberField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 320, 50));
 
-        Clear.setBackground(new java.awt.Color(255, 153, 255));
-        Clear.setText("Clear");
-
-        Add.setBackground(new java.awt.Color(255, 153, 255));
-        Add.setText("Add");
-        Add.addActionListener(new java.awt.event.ActionListener() {
+        JbtnClear.setBackground(new java.awt.Color(255, 153, 255));
+        JbtnClear.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        JbtnClear.setText("Clear");
+        JbtnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddActionPerformed(evt);
+                JbtnClearActionPerformed(evt);
             }
         });
+        NumberAddition.add(JbtnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, 150, 50));
 
-        Exit.setBackground(new java.awt.Color(255, 153, 255));
-        Exit.setText("Exit");
-        Exit.addActionListener(new java.awt.event.ActionListener() {
+        JbtnAdd.setBackground(new java.awt.Color(255, 153, 255));
+        JbtnAdd.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        JbtnAdd.setText("Add");
+        JbtnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExitActionPerformed(evt);
+                JbtnAddActionPerformed(evt);
             }
         });
+        NumberAddition.add(JbtnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 130, 50));
 
-        Subtract.setBackground(new java.awt.Color(255, 153, 255));
-        Subtract.setText("Subtract");
-
-        Multiply.setBackground(new java.awt.Color(255, 153, 255));
-        Multiply.setText("Multiply");
-        Multiply.addActionListener(new java.awt.event.ActionListener() {
+        JbtnExit.setBackground(new java.awt.Color(255, 153, 255));
+        JbtnExit.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        JbtnExit.setText("Exit");
+        JbtnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MultiplyActionPerformed(evt);
+                JbtnExitActionPerformed(evt);
             }
         });
+        NumberAddition.add(JbtnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 400, 150, 50));
 
-        Divide.setBackground(new java.awt.Color(255, 153, 255));
-        Divide.setText("Divide");
+        JbtnSubtract.setBackground(new java.awt.Color(255, 153, 255));
+        JbtnSubtract.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        JbtnSubtract.setText("Subtract");
+        JbtnSubtract.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbtnSubtractActionPerformed(evt);
+            }
+        });
+        NumberAddition.add(JbtnSubtract, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 130, 50));
 
-        javax.swing.GroupLayout NumberAdditionLayout = new javax.swing.GroupLayout(NumberAddition);
-        NumberAddition.setLayout(NumberAdditionLayout);
-        NumberAdditionLayout.setHorizontalGroup(
-            NumberAdditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(NumberAdditionLayout.createSequentialGroup()
-                .addGroup(NumberAdditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(NumberAdditionLayout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addGroup(NumberAdditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SecondNumber, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(FirstNumber, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(NumberAdditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ResultField, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(NumberAdditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(SecondNumberField, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                .addComponent(FirstNumberField))))
-                    .addGroup(NumberAdditionLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Subtract)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Multiply)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Divide)))
-                .addContainerGap(25, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NumberAdditionLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-        );
-        NumberAdditionLayout.setVerticalGroup(
-            NumberAdditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(NumberAdditionLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(NumberAdditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FirstNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FirstNumber))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(NumberAdditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SecondNumber)
-                    .addComponent(SecondNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
-                .addGroup(NumberAdditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(ResultField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(NumberAdditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(NumberAdditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Subtract, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Multiply, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Divide))
-                    .addComponent(Add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(NumberAdditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(NumberAdditionLayout.createSequentialGroup()
-                        .addGap(0, 1, Short.MAX_VALUE)
-                        .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Clear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        JbtnMultiply.setBackground(new java.awt.Color(255, 153, 255));
+        JbtnMultiply.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        JbtnMultiply.setText("Multiply");
+        JbtnMultiply.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbtnMultiplyActionPerformed(evt);
+            }
+        });
+        NumberAddition.add(JbtnMultiply, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 130, 50));
+
+        JbtnDivide.setBackground(new java.awt.Color(255, 153, 255));
+        JbtnDivide.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        JbtnDivide.setText("Divide");
+        JbtnDivide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbtnDivideActionPerformed(evt);
+            }
+        });
+        NumberAddition.add(JbtnDivide, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 130, 50));
+
+        Background.setForeground(new java.awt.Color(255, 255, 255));
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Naraja/numberaddition/matt.jpg"))); // NOI18N
+        NumberAddition.add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 740, 430));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
-                .addComponent(NumberAddition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+            .addComponent(NumberAddition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
-                .addComponent(NumberAddition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+            .addComponent(NumberAddition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -205,11 +204,18 @@ public class Naraja_NumberAdditionUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ResultFieldActionPerformed
 
-    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_ExitActionPerformed
+    private void JbtnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnExitActionPerformed
+    JFrame frame = new JFrame("Exit"); // Declare 'frame' here
+    if (JOptionPane.showConfirmDialog(
+            frame, 
+            "Confirm if you want to exit", 
+            "Number Calculator", 
+            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) { // Use YES_OPTION here
+        System.exit(0); // Exit the application
+    }
+    }//GEN-LAST:event_JbtnExitActionPerformed
 
-    private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
+    private void JbtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnAddActionPerformed
         // First we define float variables.
         float num1, num2, result;
         // We have to parse the text to a type float.
@@ -218,11 +224,49 @@ public class Naraja_NumberAdditionUI extends javax.swing.JFrame {
         // Now we can perform the addition.
         result = num1+num2;
         ResultField.setText(String.valueOf(result));
-    }//GEN-LAST:event_AddActionPerformed
+    }//GEN-LAST:event_JbtnAddActionPerformed
 
-    private void MultiplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MultiplyActionPerformed
+    private void JbtnMultiplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnMultiplyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MultiplyActionPerformed
+        float num1, num2, result;
+        num1 = Float.parseFloat(FirstNumberField.getText());
+        num2 = Float.parseFloat(SecondNumberField.getText());
+         result = num1*num2;
+         ResultField.setText(String.valueOf(result));
+    }//GEN-LAST:event_JbtnMultiplyActionPerformed
+
+    private void JbtnSubtractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnSubtractActionPerformed
+        // TODO add your handling code here:
+         float num1, num2, result;
+        // We have to parse the text to a type float.
+        num1 = Float.parseFloat(FirstNumberField.getText());
+        num2 = Float.parseFloat (SecondNumberField.getText());
+        // Now we can perform the subtraction.
+        result = num1 - num2;
+        // We will now pass the value of result to ResultField
+        // We are also gonna change the value of result from float to a string.
+        ResultField.setText(String.valueOf(result));
+    }//GEN-LAST:event_JbtnSubtractActionPerformed
+
+    private void JbtnDivideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnDivideActionPerformed
+        // TODO add your handling code here:
+                float num1, num2, result;
+        num1 = Float.parseFloat(FirstNumberField.getText());
+        num2 = Float.parseFloat(SecondNumberField.getText());
+         result = num1/num2;
+         ResultField.setText(String.valueOf(result));
+    }//GEN-LAST:event_JbtnDivideActionPerformed
+
+    private void FirstNumberFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FirstNumberFieldKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FirstNumberFieldKeyTyped
+
+    private void JbtnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnClearActionPerformed
+        // Set clear textfields
+            FirstNumberField.setText("");
+                SecondNumberField.setText("");
+                    ResultField.setText("");
+    }//GEN-LAST:event_JbtnClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,18 +304,19 @@ public class Naraja_NumberAdditionUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Add;
-    private javax.swing.JButton Clear;
-    private javax.swing.JButton Divide;
-    private javax.swing.JButton Exit;
+    private javax.swing.JLabel Background;
     private javax.swing.JLabel FirstNumber;
     private javax.swing.JTextField FirstNumberField;
-    private javax.swing.JButton Multiply;
+    private javax.swing.JButton JbtnAdd;
+    private javax.swing.JButton JbtnClear;
+    private javax.swing.JButton JbtnDivide;
+    private javax.swing.JButton JbtnExit;
+    private javax.swing.JButton JbtnMultiply;
+    private javax.swing.JButton JbtnSubtract;
     private javax.swing.JPanel NumberAddition;
+    private javax.swing.JLabel Result;
     private javax.swing.JTextField ResultField;
     private javax.swing.JLabel SecondNumber;
     private javax.swing.JTextField SecondNumberField;
-    private javax.swing.JButton Subtract;
-    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
