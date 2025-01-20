@@ -64,6 +64,7 @@ public class Naraja_NumberAdditionUI extends javax.swing.JFrame {
         JbtnMultiply = new javax.swing.JButton();
         JbtnDivide = new javax.swing.JButton();
         Background = new javax.swing.JLabel();
+        Background2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,7 +85,7 @@ public class Naraja_NumberAdditionUI extends javax.swing.JFrame {
         Result.setText("Result:");
         NumberAddition.add(Result, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, -1, 50));
 
-        FirstNumberField.setBackground(new java.awt.Color(51, 204, 255));
+        FirstNumberField.setBackground(new java.awt.Color(253, 215, 255));
         FirstNumberField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FirstNumberFieldActionPerformed(evt);
@@ -98,15 +99,20 @@ public class Naraja_NumberAdditionUI extends javax.swing.JFrame {
         NumberAddition.add(FirstNumberField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 320, 50));
 
         ResultField.setEditable(false);
-        ResultField.setBackground(new java.awt.Color(51, 204, 255));
+        ResultField.setBackground(new java.awt.Color(253, 215, 255));
         ResultField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ResultFieldActionPerformed(evt);
             }
         });
+        ResultField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ResultFieldKeyTyped(evt);
+            }
+        });
         NumberAddition.add(ResultField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 320, 50));
 
-        SecondNumberField.setBackground(new java.awt.Color(51, 204, 255));
+        SecondNumberField.setBackground(new java.awt.Color(253, 215, 255));
         SecondNumberField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SecondNumberFieldActionPerformed(evt);
@@ -175,8 +181,11 @@ public class Naraja_NumberAdditionUI extends javax.swing.JFrame {
         NumberAddition.add(JbtnDivide, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 130, 50));
 
         Background.setForeground(new java.awt.Color(255, 255, 255));
-        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Naraja/numberaddition/matt.jpg"))); // NOI18N
-        NumberAddition.add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 740, 430));
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Naraja/numberaddition/Pink Panther.png"))); // NOI18N
+        NumberAddition.add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 320, 430));
+
+        Background2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Naraja/numberaddition/Pink panther 2.png"))); // NOI18N
+        NumberAddition.add(Background2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, 192, 370, 260));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,7 +194,7 @@ public class Naraja_NumberAdditionUI extends javax.swing.JFrame {
             .addComponent(NumberAddition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(NumberAddition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
@@ -268,6 +277,10 @@ public class Naraja_NumberAdditionUI extends javax.swing.JFrame {
                     ResultField.setText("");
     }//GEN-LAST:event_JbtnClearActionPerformed
 
+    private void ResultFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ResultFieldKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ResultFieldKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -305,6 +318,7 @@ public class Naraja_NumberAdditionUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;
+    private javax.swing.JLabel Background2;
     private javax.swing.JLabel FirstNumber;
     private javax.swing.JTextField FirstNumberField;
     private javax.swing.JButton JbtnAdd;
